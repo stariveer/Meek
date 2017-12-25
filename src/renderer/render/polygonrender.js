@@ -3,6 +3,7 @@
  */
 import Geometry from '../../geometry/geometry'
 import GeometryRender from '../render/geomertyrender'
+import LineStyle from '../../style/linestyle'
 import {Transform} from '../../data/matrix/transform'
 import {colorToString} from '../../utils/helpers'
 
@@ -152,8 +153,8 @@ export default class PolygonRender extends GeometryRender {
       ctx.strokeStyle = colorToString(borderStyle.color,borderStyle.alpha)
       ctx.lineWidth = borderStyle.width
     
-      if (borderStyle.lineDash) {
-        ctx.setLineDash(borderStyle.lineDash)
+      if (borderStyle.style === LineStyle.DASH) {
+        ctx.setLineDash([5, 5])
       }
     }
     
