@@ -35,7 +35,7 @@ Style.defaultFunction = function () {
   
     // 线样式 line style
     Style._default[Geometry.LINE] = [
-      new LineStyle(blue, 1, width, LineStyle.LineCap.ROUND, LineStyle.LineJion.ROUND)// 内框
+      new LineStyle(blue, 1, width)// 内框
     ]
   
     // 点样式 point style

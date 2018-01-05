@@ -2,6 +2,7 @@
  * Created by zhangyong on 2017/3/20.
  */
 import GeometryRender from '../render/geomertyrender'
+import LineStyle from '../../style/linestyle'
 
 import {colorToString} from '../../utils/helpers'
 import {Transform} from '../../data/matrix/transform'
@@ -63,8 +64,8 @@ export default class LineRender extends GeometryRender {
         strokeStyle: colorToString(styleObj.color,styleObj.alpha),
         lineCap: styleObj.lineCap,
         lineJion: styleObj.lineJion,
-        miterLimit: styleObj.miterLimit
-        // hasDash: styleObj.style === LineStyle.DASH ? true : false
+        miterLimit: styleObj.miterLimit,
+        hasDash: styleObj.style === LineStyle.DASH ? true : false
       }
       
       this.drawLine(ctx, renderOptions)
@@ -85,6 +86,10 @@ export default class LineRender extends GeometryRender {
     for (let i = 0,ii = coordinates.length ; i < ii - 1 ; i++) {
       ctx.moveTo(coordinates[i][0],coordinates[i][1])
       ctx.lineTo(coordinates[i + 1][0],coordinates[i + 1][1])
+    }
+  
+    if (renderOpt.hasDash) {
+      ctx.setLineDash([5, 5])
     }
   
     ctx.stroke()
