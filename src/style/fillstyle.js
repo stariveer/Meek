@@ -3,6 +3,7 @@
  */
 
 import BaseStyle from './basestyle'
+import TextStyle from './textstyle'
 
 /**
  *
@@ -35,6 +36,7 @@ export default class FillStyle extends BaseStyle {
     super(color, style, alpha)
 
     this._borderStyle = borderStyle
+    this.textStyle = new TextStyle()
   }
   
   /**

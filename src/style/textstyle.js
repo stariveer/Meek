@@ -2,8 +2,7 @@
  * Created by zhangyong on 2017/6/12.
  */
 
-import BaseStyle from './basestyle'
-import FillStyle from './fillstyle'
+import BaseObject from '../core/baseobject'
 
 /**
  *
@@ -30,7 +29,7 @@ import FillStyle from './fillstyle'
  *     });
  *
  */
-export default class TextStyle extends BaseStyle {
+export default class TextStyle extends BaseObject {
   
   /**
    *
@@ -45,7 +44,7 @@ export default class TextStyle extends BaseStyle {
     /**
      *
      */
-    this.text = options.text
+    this.text = options.text || ''
     
     /**
      * @private
@@ -57,7 +56,7 @@ export default class TextStyle extends BaseStyle {
      * @private
      * @type {number|undefined}
      */
-    this.rotation = options.rotation
+    this.rotation = options.rotation || 0
   
     /**
      * @private
@@ -69,7 +68,7 @@ export default class TextStyle extends BaseStyle {
      * @private
      * @type {number|undefined}
      */
-    this.scale = options.scale
+    this.scale = options.scale || TextStyle.DEFAULT_SCALE
   
     /**
      * @private
@@ -87,14 +86,13 @@ export default class TextStyle extends BaseStyle {
      * @private
      * @type {ol.style.Fill}
      */
-    this.fill = options.fill !== undefined ? options.fill :
-      new FillStyle({color: TextStyle.DEFAULT_FILL_COLOR})
+    this.fill = options.fill !== undefined ? options.fill : TextStyle.DEFAULT_FILL_COLOR
   
     /**
      * @private
      * @type {ol.style.Stroke}
      */
-    this.stroke = options.stroke !== undefined ? options.stroke : null
+    this.stroke = options.stroke !== undefined ? options.stroke : TextStyle.DEFAULT_STROKE
   
     /**
      * @private
@@ -233,18 +231,64 @@ export default class TextStyle extends BaseStyle {
 }
 
 /**
- * Default fill color for text style
  *
- * 默认字体颜色
- * @type {String}
+ * 默认字体边框样式
+ * @type {String} DEFAULT_STROKE
  * @static
  * @final
  *
  */
-TextStyle.DEFAULT_FILL_COLOR = '#333'
+TextStyle.DEFAULT_STROKE = {
+  color: [255, 255, 255],
+  width: 2,
+  lineCap: 'round',
+  lineJion: 'round'
+}
 
+/**
+ *
+ * 默认字体颜色
+ * @type {String} DEFAULT_FILL_COLOR
+ * @static
+ * @final
+ *
+ */
+TextStyle.DEFAULT_FILL_COLOR = [0, 0, 255]
+
+/**
+ * 默认字体样式
+ * @type {String} DEFAULT_FONT
+ * @static
+ * @final
+ *
+ */
 TextStyle.DEFAULT_FONT = 'bold 12px Arial'
 
+
+/**
+ * 默认字体显示位置
+ * @type {String} DEFAULT_TEXT_ALIGN
+ * @static
+ * @final
+ *
+ */
 TextStyle.DEFAULT_TEXT_ALIGN = 'center'
 
+
+/**
+ * 默认字体显示位置
+ * @type {String} DEFAULT_BASE_LINE
+ * @static
+ * @final
+ *
+ */
 TextStyle.DEFAULT_BASE_LINE = 'middle'
+
+/**
+ * 默认字体缩放初始值
+ * @type {String} DEFAULT_BASE_LINE
+ * @static
+ * @final
+ *
+ */
+TextStyle.DEFAULT_SCALE = 10

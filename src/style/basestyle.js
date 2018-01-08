@@ -3,10 +3,6 @@
  */
 
 import BaseObject from '../core/baseobject'
-//
-// Abstract base class; normally only used for createing subclasses and not
-// instantiated in apps.
-// Base class for styling geometries.
 
 /**
  * 定义基础样式类，包括了一些基础的属性，如颜色、对象样式、透明度

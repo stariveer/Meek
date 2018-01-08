@@ -113,3 +113,11 @@ function onEditBtnClick(){
   drawTool.active = false
   select.active = true
 }
+
+function onSubmitClick(){
+  currentFeature.displayText = document.getElementById('textIpt').value
+  currentFeature.style[0].textStyle.fill = [255,0,0]
+  currentFeature.style[0].textStyle.stroke.width = 3
+  map.render()
+  formClose(false)
+}

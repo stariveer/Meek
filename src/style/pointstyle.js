@@ -3,6 +3,7 @@
  */
 
 import BaseStyle from './basestyle'
+import TextStyle from './textstyle'
 
 /**
  * 定义一个点图形的样式
@@ -41,6 +42,7 @@ export default class PointStyle extends BaseStyle {
     this._yoffset = yoffset
     this._angle = angle
     this._borderStyle = borderStyle
+    this.textStyle = new TextStyle()
   }
 
   /**

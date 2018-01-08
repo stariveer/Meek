@@ -3,6 +3,7 @@
  */
 
 import BaseStyle from './basestyle'
+import TextStyle from './textstyle'
 
 /**
  * 定义一个线图形的样式
@@ -38,6 +39,7 @@ export default class LineStyle extends BaseStyle {
     this.lineCap = lineCap
     this.lineJion = lineJion
     this.miterLimit = miterLimit
+    this.textStyle = new TextStyle()
   }
   
   /**

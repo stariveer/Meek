@@ -5,8 +5,8 @@
 import GeometryRender from './geomertyrender'
 import {Transform} from '../../data/matrix/transform'
 import {colorToString} from '../../utils/helpers'
-import TextStyle from '../../style/textstyle'
-import LineStyle from '../../style/linestyle'
+// import TextStyle from '../../style/textstyle'
+// import LineStyle from '../../style/linestyle'
 
 export default class TextRender extends GeometryRender {
   
@@ -22,25 +22,13 @@ export default class TextRender extends GeometryRender {
    * @param transform
    */
   render (feature, renderStyle, transform) {
-  
     let textStyle = renderStyle[0].textStyle
-
-    if(!feature.displayText){
-      
+    if (!feature.displayText || !textStyle) {
       return
     }
+    
     const displayText = String(feature.displayText)
-
-    if(!textStyle){
-      textStyle = new TextStyle({
-        text: displayText,
-        scale: 10,
-        fill: [0, 0, 255],
-        stroke: new LineStyle([255, 255, 255],1,2,
-          LineStyle.LineCap.ROUND,
-          LineStyle.LineJion.ROUND),
-      })
-    }
+    textStyle.text = displayText
 
     const ctx = this.context
     ctx.save()
@@ -89,7 +77,6 @@ export default class TextRender extends GeometryRender {
           ctx.fillText(lineText, x, lineY)
         }
     
-        // Move next line down by fontSize px
         lineY = lineY + fontSize
       }
     }
