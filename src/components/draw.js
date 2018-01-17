@@ -528,6 +528,7 @@ export default class Draw extends Component {
     
     if (this._finishCoordinate) {
       this._modifyDrawing(event)
+      // this._autoPan(event)
     } else {
       this._updateSketchPoint(event)
     }
@@ -977,6 +978,24 @@ export default class Draw extends Component {
       const sketchPointgeom = this._sketchPoint.geometry
       sketchPointgeom.setCoordinates(coordinates)
     }
+  }
+  
+  _autoPan (event) {
+    const pixel = event.pixel
+    const size = this.map.size
+    const x = pixel[0]
+    const y = pixel[1]
+    
+    if (x <= 2 || y <= 2) {
+      // console.log('出界')
+      return
+    }
+    
+    if (x >= size[0] - 5 || y >= size[1] - 5) {
+      // console.log('出界')
+      return
+    }
+    
   }
   
   /**

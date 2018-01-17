@@ -248,8 +248,8 @@ ExtentUtil.containsPoint = function(extent, point){
     return extent[0] <= x && x <= extent[2] &&
            extent[1] <= y && y <= extent[3]
   } else {
-    return (extent.xmin - 10) <= x && x <= (extent.xmax + 10) &&
-      (extent.ymin - 10)<= y && y <= (extent.ymax + 10)
+    return (extent.xmin - 1) <= x && x <= (extent.xmax + 1) &&
+      (extent.ymin - 1)<= y && y <= (extent.ymax + 1)
   }
 }
 

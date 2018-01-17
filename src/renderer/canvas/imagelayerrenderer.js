@@ -47,17 +47,7 @@ export default class ImageLayerRenderer extends LayerRenderer {
     
     let image
     const imageLayer = this.layer
-    // const imageSource = imageLayer.getSource()
-    
-    // const hints = frameState.viewHints
-    
     let renderedExtent = frameState.extent
-    
-    // TODO 需要加上图层范围数据的限制
-    // if (imageLayer.dataExtent !== undefined) {
-    //   renderedExtent = ExtentUtil.getIntersection(
-    //     renderedExtent, layerState.extent)
-    // }
     
     if (!ExtentUtil.isEmpty(renderedExtent)) {
       const projection = viewState.projection
@@ -94,10 +84,6 @@ export default class ImageLayerRenderer extends LayerRenderer {
         pixelRatio / viewResolution, -pixelRatio / viewResolution,
         0,
         -viewCenter[0], -viewCenter[1])
-      
-      // this.updateAttributions(frameState.attributions, image.getAttributions())
-      // this.updateLogos(frameState, imageSource)
-      this.renderedResolution = viewResolution * pixelRatio / imagePixelRatio
     }
     
     return !!this.image
