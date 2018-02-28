@@ -25,7 +25,6 @@ var map = new Datatang.Map({
   })
 });
 
-
 var typeSelect = document.getElementById('type')
 
 /**
@@ -91,7 +90,7 @@ draw.addEventListener(Datatang.DrawEvent.EventType.DRAW_END, function(drawEvent)
   })
   
   featureLayer.addFeatures(splitFeatures)
-  featureLayer.removeFeature(linefeature)
+  // featureLayer.removeFeature(linefeature)
   featureLayer.removeFeature(splitedFeature)
 })
 
