@@ -50,7 +50,7 @@ export default class FeatureLayerRenderer extends LayerRenderer {
      * @type {NaN}
      * @private
      */
-    this._renderResolution = NaN
+    this._renderResolution = Number.NaN
   
     /**
      *

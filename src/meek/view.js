@@ -198,11 +198,11 @@ export default class View extends BaseObject {
     
     return {
       constraint: resolutionConstraint,
-      maxResolution: maxResolution,
-      minResolution: minResolution,
-      minZoom: minZoom,
-      zoomFactor: zoomFactor,
-      extent: extent
+      maxResolution,
+      minResolution,
+      minZoom,
+      zoomFactor,
+      extent
     }
   }
   
@@ -273,8 +273,8 @@ export default class View extends BaseObject {
     
     return {
       center: center.slice(),
-      resolution: resolution,
-      rotation: rotation
+      resolution,
+      rotation
     }
   }
   

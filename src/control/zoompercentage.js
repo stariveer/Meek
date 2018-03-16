@@ -17,10 +17,10 @@ export default class ZoomPercentage extends Control {
     const className = options.className ? options.className : 'dt-scale-line'
     
     this._innerElement = document.createElement('DIV')
-    this._innerElement.className = className + '-inner'
+    this._innerElement.className = `${className}-inner`
     
     this._element = document.createElement('DIV')
-    this._element.className = className + ' ' + 'dt-unselectable'
+    this._element.className = `${className} dt-unselectable`
     this._element.appendChild(this._innerElement)
   }
   
@@ -48,7 +48,7 @@ export default class ZoomPercentage extends Control {
   render () {
     const view = this.map.view
     const resolution =  (1 / view.resolution).toFixed(2)
-    const html = '&#8195;缩放比   ' + resolution * 100  + ' % &#8195;'
+    const html = `&#8195;缩放比${resolution * 100}% &#8195;`
     this._innerElement.innerHTML = html
   }
 }

@@ -23,13 +23,13 @@ export default class Home extends Control {
       typeof homeLabel === 'string' ? document.createTextNode(homeLabel) : homeLabel
     )
   
-    const cssClasses = className + ' dt-unselectable ' + 'dt-control'
+    const cssClasses = `${className} dt-unselectable dt-control`
     const element = document.createElement('div')
     element.className = cssClasses
     element.appendChild(homeElement)
   
     super({
-      element: element,
+      element,
       target: options.target
     })
   

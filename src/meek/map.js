@@ -90,9 +90,7 @@ export default class Map extends BaseObject {
     ]
     overlayEvents.forEach(overlayEvent => {
       listen(this._overlayContainerStopEvent, overlayEvent,
-        function(evt) {
-          evt.stopPropagation()
-        })
+        (evt) => {evt.stopPropagation() })
     })
     
     this.viewport.appendChild(this._overlayContainerStopEvent)
@@ -109,10 +107,10 @@ export default class Map extends BaseObject {
     // Create the browser events handler
     this._createBrowserEventHandler()
   
-    this._animationDelay = function () {
+    this._animationDelay = () => {
       this._animationDelayKey = undefined
       this._renderFrame(Date.now())
-    }.bind(this)
+    }
     
     // Set up the properties for map
     this.layers = optionsInner.values['layers']

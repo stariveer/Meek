@@ -211,7 +211,7 @@ export default class Overlay extends BaseObject {
         offsetX -= this._element.offsetWidth / 2
       }
       
-      const left = Math.round(pixel[0] + offsetX) + 'px'
+      const left = `${Math.round(pixel[0] + offsetX)}px`
       if (this._rendered.left_ != left) {
         this._rendered.left_ = style.left = left
       }
@@ -223,7 +223,7 @@ export default class Overlay extends BaseObject {
         this._rendered.top_ = style.top = ''
       }
       
-      const bottom = Math.round(mapSize[1] - pixel[1] - offsetY) + 'px'
+      const bottom = `${Math.round(mapSize[1] - pixel[1] - offsetY)}px`
       if (this._rendered.bottom_ != bottom) {
         this._rendered.bottom_ = style.bottom = bottom
       }
@@ -238,7 +238,7 @@ export default class Overlay extends BaseObject {
         offsetY -= this._element.offsetHeight / 2
       }
       
-      const top = Math.round(pixel[1] + offsetY) + 'px'
+      const top = `${Math.round(pixel[1] + offsetY)}px`
       if (this._rendered.top_ != top) {
         this._rendered.top_ = style.top = top
       }

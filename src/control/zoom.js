@@ -25,7 +25,7 @@ export default class Zoom extends Control {
       options.zoomOutTipLabel : '缩小'
   
     const inElement = document.createElement('button')
-    inElement.className = className + '-in'
+    inElement.className = `${className}-in`
     inElement.setAttribute('type', 'button')
     inElement.title = zoomInTipLabel
     inElement.appendChild(
@@ -33,14 +33,14 @@ export default class Zoom extends Control {
     )
   
     const outElement = document.createElement('button')
-    outElement.className = className + '-out'
+    outElement.className = `${className}-out`
     outElement.setAttribute('type', 'button')
     outElement.title = zoomOutTipLabel
     outElement.appendChild(
       typeof zoomOutLabel === 'string' ? document.createTextNode(zoomOutLabel) : zoomOutLabel
     )
   
-    const cssClasses = className + ' dt-unselectable ' + 'dt-control'
+    const cssClasses = `${className} dt-unselectable dt-control`
     const element = document.createElement('div')
     element.className = cssClasses
     element.appendChild(inElement)
