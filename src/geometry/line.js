@@ -231,9 +231,9 @@ export default class Line extends Geometry {
    * @returns {*|number}
    */
   getCoordinateIndex (coord) {
-    return this.getCoordinates().findIndex(function(points){
-      return points[0] === coord[0] && points[1] === coord[1]
-    })
+    return this.getCoordinates().findIndex( points =>
+      points[0] === coord[0] && points[1] === coord[1]
+    )
   }
   
   /**
@@ -243,7 +243,7 @@ export default class Line extends Geometry {
    * @returns {Line} new line
    */
   clone () {
-    const newCoordinates = []
+    // const newCoordinates = [...this.getCoordinates()]
     this.getCoordinates().forEach( coords => {
       newCoordinates.push([coords[0],coords[1]])
     })

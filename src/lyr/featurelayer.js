@@ -116,9 +116,7 @@ export default class FeatureLayer extends BaseLayer {
    */
   findFeature (id) {
     const features = this.features
-    return features.find(f => {
-      return f.id === id
-    })
+    return features.find( f => f.id === id )
   }
   
   /**
@@ -151,9 +149,7 @@ export default class FeatureLayer extends BaseLayer {
     
     const featureId = feature.id
     const features = this.features
-    const findIndex = features.findIndex(f => {
-      return f.id === featureId
-    })
+    const findIndex = features.findIndex(f => f.id === featureId )
     
     return findIndex > -1
   }
@@ -218,10 +214,9 @@ export default class FeatureLayer extends BaseLayer {
       tolerance: tolerance * frameState.viewState.resolution
     }
     
-    
-    const result = extentFeatures.filter(function(feature){
-      return feature.geometry.containsXY(piexlX, piexlY, options)
-    })
+    const result = extentFeatures.filter( (feature) =>
+      feature.geometry.containsXY(piexlX, piexlY, options)
+    )
     
     return result
   }
@@ -233,10 +228,9 @@ export default class FeatureLayer extends BaseLayer {
    * @private
    */
   _getIntersectedFeatures (point, features) {
-    return features.filter(function(feature){
-      let geometry = feature.geometry
-      return geometry.pointInExtent(point)
-    })
+    return features.filter( (feature) =>
+      feature.geometry.pointInExtent(point)
+    )
   }
   
   /**
@@ -261,9 +255,9 @@ export default class FeatureLayer extends BaseLayer {
     }
     
     const featureId = feature.id
-    const index = features.findIndex(function(f){
-      return f.id === featureId
-    })
+    const index = features.findIndex( f =>
+      f.id === featureId
+    )
     
     
     if (index > -1) {

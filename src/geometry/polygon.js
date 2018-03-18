@@ -145,9 +145,9 @@ export default class Polygon extends Geometry {
     if (coords.length > 1 && contains) {
       const coordsTemp = coords.slice(1)
       
-      const inHole = coordsTemp.some( ring => {
-        return this._inOneRing(x, y, ring)
-      })
+      const inHole = coordsTemp.some( ring =>
+        this._inOneRing(x, y, ring)
+      )
       
       if (inHole) {
         contains = false

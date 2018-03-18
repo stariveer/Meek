@@ -183,7 +183,7 @@ export default class Point extends Geometry {
     let equals = false
     if (geom !== null) {
       equals = ((this.x === geom.x && this.y === geom.x) ||
-      (isNaN(this.x) && isNaN(this.y) && isNaN(geom.x) && isNaN(geom.y)))
+      (Number.isNaN(this.x) && Number.isNaN(this.y) && Number.isNaN(geom.x) && Number.isNaN(geom.y)))
     }
     return equals
   }
