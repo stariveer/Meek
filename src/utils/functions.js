@@ -10,18 +10,14 @@ export const functions = {}
  * @returns {boolean}
  * @constructor
  */
-functions.TURE = function() {
-  return true
-}
+functions.TURE = () => true
 
 /**
  * 默认条件函数不执行
  * @returns {boolean}
  * @constructor
  */
-functions.FALSE = function() {
-  return false
-}
+functions.FALSE = () => false
 
 export default {
   functions

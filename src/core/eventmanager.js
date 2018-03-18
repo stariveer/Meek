@@ -34,9 +34,9 @@ const removeListeners = function (target, type) {
     listeners.length = 0
     let listenerMap = target.ol_lm
     if (listenerMap) {
-      delete listenerMap[type]
+      Reflect.deleteProperty(listenerMap, type)
       if (Object.keys(listenerMap).length === 0) {
-        delete target.ol_lm
+        Reflect.deleteProperty(target, ol_lm)
       }
     }
   }
@@ -148,9 +148,9 @@ export function listen (target, type, listener, optThis, optOnce) {
     listenerObj = {
       bindTo: optThis,
       callOnce: !!optOnce,
-      listener: listener,
-      target: target,
-      type: type
+      listener,
+      target,
+      type
     }
     
     target.addEventListener(type, bindListener(listenerObj))

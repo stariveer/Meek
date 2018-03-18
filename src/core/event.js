@@ -46,7 +46,9 @@ export default class Event {
    * @returns {Boolean} ture if exsit ,false otherwise
    */
   hasListener (optType) {
-    return optType ? optType in this._listeners : Object.keys(this._listeners).length > 0
+    return optType ?
+      Reflect.has(this._listeners, optType) :
+      Object.keys(this._listeners).length > 0
   }
 
   /**
@@ -61,14 +63,14 @@ export default class Event {
     if (listeners) {
       let index = listeners.indexOf(listener)
 
-      if (type in this._pendingRemovals) {
+      if (Reflect.has(this._pendingRemovals, type)) {
         listeners[index] = this.nullFunction
         ++this._pendingRemovals[type]
       } else {
         listeners.splice(index, 1)
 
         if (listeners.length === 0) {
-          delete this._listeners[type]
+          Reflect.deleteProperty(this._listeners, type)
         }
       }
     }
@@ -113,7 +115,7 @@ export default class Event {
     let propagate
 
     if (listeners) {
-      if (!(type in this._dispatching)) {
+      if(!Reflect.has(this._dispatching, type)) {
         this._dispatching[type] = 0
         this._pendingRemovals[type] = 0
       }
@@ -131,13 +133,13 @@ export default class Event {
 
       if (this._dispatching[type] === 0) {
         let pendingRemovals = this._pendingRemovals[type]
-        delete this._pendingRemovals[type]
+        Reflect.deleteProperty(this._pendingRemovals, type)
 
         while (pendingRemovals--) {
           this.removeEventListener(type, this.nullFunction)
         }
 
-        delete this._dispatching[type]
+        Reflect.deleteProperty(this._dispatching, type)
       }
 
       return propagate

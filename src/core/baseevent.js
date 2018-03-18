@@ -63,10 +63,7 @@ export default class BaseEvent {
  * @static
  * @method stopPropagation
  */
-BaseEvent.stopPropagation = function(evt) {
-  evt.stopPropagation()
-}
-
+BaseEvent.stopPropagation = evt => evt.stopPropagation()
 
 /**
  *
@@ -76,6 +73,5 @@ BaseEvent.stopPropagation = function(evt) {
  * @method preventDefault
  * @param evt {Object} evt DOM event model
  */
-BaseEvent.preventDefault = function(evt) {
-  evt.preventDefault()
-}
+BaseEvent.preventDefault = evt => evt.preventDefault()
+

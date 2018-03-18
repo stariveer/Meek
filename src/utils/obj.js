@@ -23,7 +23,7 @@ export default class Obj {
    */
   static clear (object) {
     for (let property in object) {
-      delete object[property]
+      Reflect.deleteProperty(object, property)
     }
   }
   

@@ -25,7 +25,7 @@ export function colorToString(color,alpha = 1){
     b = (b + 0.5) | 0
   }
   
-  return 'rgba(' + r + ',' + g + ',' + b + ',' + alpha + ')'
+  return `rgba(${r}, ${g} , ${b} , ${alpha} )`
 }
 
 export default {

@@ -503,15 +503,15 @@ export default class Map extends BaseObject {
       const computedStyle = getComputedStyle(targetElement)
       this.size = [
         targetElement.offsetWidth -
-        parseFloat(computedStyle['borderLeftWidth']) -
-        parseFloat(computedStyle['paddingLeft']) -
-        parseFloat(computedStyle['paddingRight']) -
-        parseFloat(computedStyle['borderRightWidth']),
+        Number.parseFloat(computedStyle['borderLeftWidth']) -
+        Number.parseFloat(computedStyle['paddingLeft']) -
+        Number.parseFloat(computedStyle['paddingRight']) -
+        Number.parseFloat(computedStyle['borderRightWidth']),
         targetElement.offsetHeight -
-        parseFloat(computedStyle['borderTopWidth']) -
-        parseFloat(computedStyle['paddingTop']) -
-        parseFloat(computedStyle['paddingBottom']) -
-        parseFloat(computedStyle['borderBottomWidth'])
+        Number.parseFloat(computedStyle['borderTopWidth']) -
+        Number.parseFloat(computedStyle['paddingTop']) -
+        Number.parseFloat(computedStyle['paddingBottom']) -
+        Number.parseFloat(computedStyle['borderBottomWidth'])
       ]
     }
   }

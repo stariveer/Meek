@@ -3,14 +3,14 @@
  */
 export const Coordinate = {}
 
-Coordinate.add = function(coordinate, delta) {
+Coordinate.add = (coordinate, delta)  => {
   coordinate[0] += delta[0]
   coordinate[1] += delta[1]
   return coordinate
 }
 
 
-Coordinate.rotate = function(coordinate, angle) {
+Coordinate.rotate = (coordinate, angle) => {
   const cosAngle = Math.cos(angle)
   const sinAngle = Math.sin(angle)
   const x = coordinate[0] * cosAngle - coordinate[1] * sinAngle
@@ -20,7 +20,7 @@ Coordinate.rotate = function(coordinate, angle) {
   return coordinate
 }
 
-Coordinate.scale = function(coordinate, scale) {
+Coordinate.scale = (coordinate, scale) => {
   coordinate[0] *= scale
   coordinate[1] *= scale
   return coordinate
