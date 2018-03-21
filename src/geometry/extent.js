@@ -306,9 +306,9 @@ export default class Extent extends Geometry {
    * @returns {Number}
    */
   getCoordinateIndex (coord) {
-    return this.getCoordinates().findIndex(function(points){
-      return points[0] === coord[0] && points[1] === coord[1]
-    })
+    return this.getCoordinates().findIndex( points =>
+      points[0] === coord[0] && points[1] === coord[1]
+    )
   }
   
   /**

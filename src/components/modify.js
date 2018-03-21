@@ -757,13 +757,13 @@ export default class Modify extends Component {
     
     const newSegmentData = {
       segment: [segment[0], vertex],
-      feature: feature,
-      geometry: geometry,
-      depth: depth,
-      index: index,
+      feature,
+      geometry,
+      depth,
+      index,
       ringIndex: segmentData.ringIndex,
       polygonIndex: segmentData.polygonIndex,
-      isVertex: isVertex
+      isVertex
     }
     
     this._dragSegments.push([newSegmentData, 1])
@@ -824,10 +824,10 @@ export default class Modify extends Component {
               if (ExtentUtil.containsPoint(pathBufferExtent, pixelCoordinate)) {
                 const segment = [points, nextPoints]
                 result.push({
-                  geometry: geometry,
-                  segment: segment,
+                  geometry,
+                  segment,
                   index: j,
-                  ringIndex: ringIndex
+                  ringIndex
                 })
               }
             }
@@ -846,11 +846,11 @@ export default class Modify extends Component {
                 if (ExtentUtil.containsPoint(pathBufferExtent, pixelCoordinate)) {
                   const segment = [points, nextPoints]
                   result.push({
-                    geometry: geometry,
-                    segment: segment,
-                    polygonIndex: polygonIndex,
+                    geometry,
+                    segment,
+                    polygonIndex,
                     index: j,
-                    ringIndex: ringIndex
+                    ringIndex
                   })
                 }
               }
@@ -870,8 +870,8 @@ export default class Modify extends Component {
             if (ExtentUtil.containsPoint(pathBufferExtent, pixelCoordinate)) {
               const segment = [points, nextPoints]
               result.push({
-                geometry: geometry,
-                segment: segment,
+                geometry,
+                segment,
                 index: j
               })
             }

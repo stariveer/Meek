@@ -10,6 +10,8 @@ import {EventType} from '../meek/eventtype'
 import {Style} from '../style/style'
 import SelectEvent from '../components/selectevent'
 
+let hasMutilSelectedSymbol = Symbol('hasmutilselected')
+
 /**
  * 图形选择模式
  *
@@ -169,12 +171,12 @@ export default class Select extends Component {
       this.clear()
     }
 
-    map.forEachFeatureAtPiexl(pixel, (function(features) {
+    map.forEachFeatureAtPiexl(pixel, (features) => {
       if(features.length > 0){
         // 赋值并填充到selectFeatures中
         this.selectFeatures = features
       }
-    }).bind(this), hitTolerance)
+    }, hitTolerance)
 
     if (this.selectFeatures.length > 0 ) {
       this._forEachStyle()
@@ -196,7 +198,7 @@ export default class Select extends Component {
     
     this.selectFeatures.forEach(feature => {
       feature.styleHighLight = false
-      feature.delete('hasmutilselected')
+      feature.delete(hasMutilSelectedSymbol)
     })
 
     this.selectFeatures = []
@@ -231,10 +233,7 @@ export default class Select extends Component {
    */
   _isInSelectFeatures (feature) {
     const features = this.selectFeatures
-    
-    const result = features.find(function(f){
-      return f.id === feature.id
-    })
+    const result = features.find( f => f.id === feature.id)
     
     return result === undefined ? false : true
   }
@@ -268,9 +267,9 @@ export default class Select extends Component {
 
     const features = this.selectFeatures
     features.forEach ( feature => {
-      if (!feature.get('hasmutilselected')) {
+      if (!feature.get(hasMutilSelectedSymbol)) {
         feature.styleHighLight = true
-        feature.set('hasmutilselected', true)
+        feature.set(hasMutilSelectedSymbol, true)
       }
     })
   }
@@ -320,8 +319,6 @@ export default class Select extends Component {
    */
   getDefaultStyleFunction () {
     const styles = Style.createDefaultEditing()
-    return function (feature) {
-      return styles[feature.geometry.geometryType]
-    }
+    return feature => styles[feature.geometry.geometryType]
   }
 }

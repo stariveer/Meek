@@ -189,7 +189,6 @@ export default class Polygon extends Geometry {
       
         // 点在多边形的边上
         if (x === px) {
-          // return 'on';
           return true
         }
       

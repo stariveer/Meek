@@ -243,9 +243,9 @@ export default class Line extends Geometry {
    * @returns {Line} new line
    */
   clone () {
-    // const newCoordinates = [...this.getCoordinates()]
+    const newCoordinates = this.getCoordinates()
     this.getCoordinates().forEach( coords => {
-      newCoordinates.push([coords[0],coords[1]])
+      newCoordinates.push([coords[0], coords[1]])
     })
   
     const newLine = new Line()

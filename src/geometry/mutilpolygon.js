@@ -169,9 +169,7 @@ export default class MutilPolygon extends Geometry {
         orderArray.push(outRings)
       })
   
-      orderArray.sort( (arr1, arr2) => {
-        return arr1.length - arr2.length
-      })
+      orderArray.sort( (arr1, arr2) => arr1.length - arr2.length )
   
       let lastLen = 0
       orderArray.forEach( arr => {
@@ -206,7 +204,7 @@ export default class MutilPolygon extends Geometry {
     if (linearRingssAreOriented(flatCoordinates, 0, endss, this.stride)) {
       orientedFlatCoordinates = flatCoordinates
     } else {
-      orientedFlatCoordinates = flatCoordinates.slice()
+      orientedFlatCoordinates = [...flatCoordinates]
       orientedFlatCoordinates.length = orientLinearRingss(orientedFlatCoordinates,
         0, endss, this.stride)
     }

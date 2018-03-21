@@ -270,10 +270,10 @@ export default class Map extends BaseObject {
     const extent = ExtentUtil.createEmpty()
     const viewState = view.getViewState()
     frameState = {
-      size: size,
-      viewState: viewState,
+      size,
+      viewState,
       pixelRatio: 1,
-      extent:extent,
+      extent,
       toPixelTransform: this._toPixelTransform,
       toCoordinateTransform: this._toCoordinateTransform,
     }
@@ -423,9 +423,7 @@ export default class Map extends BaseObject {
    * @return {Array}
    */
   getFeaturesLayer () {
-    return this.layers.filter( layer => {
-      return layer instanceof FeatureLayer
-    })
+    return this.layers.filter( layer => layer instanceof FeatureLayer )
   }
   
   /**
@@ -603,7 +601,7 @@ export default class Map extends BaseObject {
     let overlays
     if (options.overlays !== undefined) {
       if (Array.isArray(options.overlays)) {
-        overlays = options.overlays.slice()
+        overlays = [...options.overlays]
       }
     } else {
       overlays = []

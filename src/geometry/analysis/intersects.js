@@ -402,7 +402,8 @@ const distanceSquaredToSegment = function (point, segment) {
   
   return {
     distance: Math.pow(x - x0, 2) + Math.pow(y - y0, 2),
-    x: x, y: y,
-    along: along
+    x,
+    y,
+    along
   }
 }

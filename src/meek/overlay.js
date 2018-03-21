@@ -196,7 +196,7 @@ export default class Overlay extends BaseObject {
         this._rendered.left_ = style.left = ''
       }
       
-      const right = Math.round(mapSize[0] - pixel[0] - offsetX) + 'px'
+      const right = `${Math.round(mapSize[0] - pixel[0] - offsetX)}px`
       if (this._rendered.right_ != right) {
         this._rendered.right_ = style.right = right
       }

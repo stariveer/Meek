@@ -6,6 +6,11 @@ import contains from './contains'
 import {ExtentUtil} from '../../geometry/support/extentutil'
 import Polygon from '../../geometry/polygon'
 
+
+let isDividedPointSymbol = Symbol('isDividedPoint')
+let alreadyUsedSymbol = Symbol('alreadyUsed')
+let dividePointSymbol = Symbol('dividePoint')
+
 /**
  * 使用直线来切割多边形,
  * 暂时只支持不带洞的多边形的分割
@@ -34,17 +39,14 @@ export default function splitPolygonByPolyline(targetPolygon, splitLine) {
   
   // 参入到原来分割线中
   const afterInsertLineCoords = insertDiveidePointsToSplitLineCoords(dividedPointList, lineCoordinates)
-  // console.log('afterInsertLineCoords:' + afterInsertLineCoords)
   
   const allPartsScliedFromLineCoords = sliceDividedPointFromLine(dividedPointList, afterInsertLineCoords)
-  // console.log('allPartsScliedFromLineCoords' + allPartsScliedFromLineCoords)
   
   // 按照顺序插入分割点到分割多边形顶多序列中
   const vertexListAfterDivide = insertDividePointsToCoordinates(dividedPointList, polygonCoordinates)
   
   // 重塑多边形
   const results = renewal(vertexListAfterDivide, allPartsScliedFromLineCoords)
-  // console.log('最后结果：' + results)
   
   const featureCollection = []
   results.forEach( r=> {
@@ -69,12 +71,11 @@ const renewal = function(vertexListAfterDivide, allPartsScliedFromLineCoords) {
   let i = 0
   let len = vertexListAfterDivide.length
   
-  const isInArray = function(point, singlePolygonCoords) {
-    return singlePolygonCoords.find( item => {
-      return item[0] === point[0] &&
-        item[1] === point[1]
-    })
-  }
+  const isInArray = (point, singlePolygonCoords) =>
+    singlePolygonCoords.find( item =>
+      item[0] === point[0] && item[1] === point[1]
+    )
+  
   
   // 找到分割点在同一分割边上的其他点
   const findPartners = function(point) {
@@ -123,7 +124,7 @@ const renewal = function(vertexListAfterDivide, allPartsScliedFromLineCoords) {
     }
     
     // 找到分割点，就需要添加它的伙伴（不管顺逆方向）
-    if (ePoint.length >= 3 && ePoint[2] === 'isDividedPoint') {
+    if (ePoint.length >= 3 && ePoint[2] === isDividedPointSymbol) {
       const parts = findPartners(ePoint)
       parts.forEach(p => {
         singlePolygonCoords.push(p)
@@ -151,12 +152,12 @@ const renewal = function(vertexListAfterDivide, allPartsScliedFromLineCoords) {
   const updataStatus = function(singlePolygonCoords, vertexListAfterDivide) {
     vertexListAfterDivide.forEach(vertex => {
       if (isInArray(vertex, singlePolygonCoords)) {
-        // 如果是原多边形顶点，则设置为'alreadyUsed'
+        // 如果是原多边形顶点，则设置为alreadyUsedSymbol
         if (vertex.length === 2) {
-          vertex.push('alreadyUsed')
+          vertex.push(alreadyUsedSymbol)
         }
         // 如果是分割点，则只能使用2次
-        else if (vertex.length === 3 && vertex[2] === 'isDividedPoint') {
+        else if (vertex.length === 3 && vertex[2] === isDividedPointSymbol) {
           vertex.push('1')
         }
         //
@@ -214,7 +215,7 @@ const renewal = function(vertexListAfterDivide, allPartsScliedFromLineCoords) {
       singlePolygonCoords = []
     }
     // 如果是分割点
-    else if (fPoint.length === 3 && fPoint[2] === 'isDividedPoint') {
+    else if (fPoint.length === 3 && fPoint[2] === isDividedPointSymbol) {
       if (!isInArray(fPoint, singlePolygonCoords)) {
         singlePolygonCoords.push(fPoint)
       }
@@ -230,7 +231,7 @@ const renewal = function(vertexListAfterDivide, allPartsScliedFromLineCoords) {
       let ePoint = vertexListAfterDivide[i + 1]
       
       // 分割点，必须是构成同一边，不能是异边
-      if(ePoint.length >= 3 && ePoint[2] === 'isDividedPoint' && isInOneSegment(fPoint, ePoint)) {
+      if(ePoint.length >= 3 && ePoint[2] === isDividedPointSymbol && isInOneSegment(fPoint, ePoint)) {
         ePoint = fPoint
       }
       // 异边，则重新启动分割流程
@@ -307,10 +308,9 @@ const insertDiveidePointsToSplitLineCoords = function(dividedPointList, lineCoor
   }
   
   const isInArray = function(point) {
-    return afterArr.find( item => {
-      return item[0] === point[0] &&
-             item[1] === point[1]
-    })
+    return afterArr.find( item =>
+      item[0] === point[0] && item[1] === point[1]
+    )
   }
   
   let len = lineCoordinates.length
@@ -328,7 +328,7 @@ const insertDiveidePointsToSplitLineCoords = function(dividedPointList, lineCoor
     if (dividePoints.length !== 0) {
       // 插入分割点
       if (dividePoints.length === 1) {
-        afterArr.push([dividePoints[0].point.x, dividePoints[0].point.y, 'dividePoint'])
+        afterArr.push([dividePoints[0].point.x, dividePoints[0].point.y, dividePointSymbol])
       } else {
         // 多个分割点需要排序
         
@@ -337,12 +337,12 @@ const insertDiveidePointsToSplitLineCoords = function(dividedPointList, lineCoor
           y: fPoint[1]
         }
         
-        dividePoints.sort((item1, item2) => {
-          return distance(item1.point, firstPointXY) - distance(item2.point, firstPointXY)
-        })
+        dividePoints.sort((item1, item2) =>
+          distance(item1.point, firstPointXY) - distance(item2.point, firstPointXY)
+        )
   
         dividePoints.forEach(item => {
-          afterArr.push([item.point.x, item.point.y, 'dividePoint'])
+          afterArr.push([item.point.x, item.point.y, dividePointSymbol])
         })
       }
     }
@@ -393,14 +393,14 @@ const insertDividePointsToCoordinates = function(dividedPointList, polygonCoordi
           y: fPoint[1]
         }
     
-        itemDividedPoint.sort((item1, item2) => {
-          return distance(item1.point, firstPointXY) - distance(item2.point, firstPointXY)
-        })
+        itemDividedPoint.sort((item1, item2) =>
+          distance(item1.point, firstPointXY) - distance(item2.point, firstPointXY)
+        )
       }
   
       itemDividedPoint.forEach(item => {
         const point = item.point
-        afterInserted.push([point.x, point.y, 'isDividedPoint'])
+        afterInserted.push([point.x, point.y, isDividedPointSymbol])
       })
     }
   }

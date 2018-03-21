@@ -18,11 +18,10 @@ export default class Parallelogram extends Polygon {
     return Geometry.PARALLELOGRAM
   }
   
-  
   getCoordinateIndex (coord) {
-    return this.getCoordinates()[0].findIndex(function(points){
-      return points[0] === coord[0] && points[1] === coord[1]
-    })
+    return this.getCoordinates()[0].findIndex( points =>
+      points[0] === coord[0] && points[1] === coord[1]
+    )
   }
   
   clone () {

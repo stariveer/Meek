@@ -58,9 +58,9 @@ const polyContainsPoly = function (poly, poly2) {
 
 
 const polygonContainsLinestring = function (poly, coords) {
-  const hasOne = coords.some( coord => {
-    return !poly.containsXY(coord[0], coord[1])
-  })
+  const hasOne = coords.some( coord =>
+    !poly.containsXY(coord[0], coord[1])
+  )
   
   return !hasOne
 }
