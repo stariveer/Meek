@@ -1,0 +1,67 @@
+{
+  // 使用2个空格作为tab,并将对齐基准线设置为2个字符
+  "editor.tabSize": 2,
+  "files.exclude": {
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/.DS_Store": true,
+    "**/.idea": true,
+    "**/.vscode": true,
+    "**/tmp": true,
+    "**/node_modules": true,
+    "**/.history/**": true,
+    "src/styles/element-scss/lib/**": true,
+    "src/utils/meek-custom/samples/**": true,
+    "**/.sass_tmp": true,
+    "**/.sass-cache": true,
+    "**/.tmp": true,
+    "dist": true,
+    "**/vendor": true,
+    "*.oplx": true,
+    "*.docx": true,
+    "*.xlsx": true,
+    "*.itmz": true,
+    "*.mpp": true,
+    "*.pdf": true,
+    "*.dot": true,
+    "*.pptx": true,
+    "*.rplib": true,
+    "_book": true,
+    ".github": true,
+    "*.copy.vue": true
+    //  "build": true
+  },
+  "editor.codeActionsOnSave": {
+    "source.fixAll": true,
+    "source.fixAll.eslint": true
+  },
+  "search.exclude": {
+    "static/js/**": true
+  },
+  // 保存文件时自动格式化,主要针对html/css/less/scss等eslint未覆盖的文件格式
+  "editor.formatOnSave": true,
+  // 保存文件时按照eslint配置自动处理vue/js/jsx/ts/json文件格式
+  // 对于.vue文件,关闭prettier,交给eslint fix
+  "vetur.format.defaultFormatter.css": "none",
+  "vetur.format.defaultFormatter.html": "none",
+  "vetur.format.defaultFormatter.js": "none",
+  // "vetur.format.defaultFormatter.less": "none",
+  "vetur.format.defaultFormatter.postcss": "none",
+  "vetur.format.defaultFormatter.scss": "none",
+  "vetur.format.defaultFormatter.stylus": "stylus-supremacy",
+  "vetur.format.defaultFormatter.ts": "none",
+
+  /* stylus 配置 start */
+  // 是否插入冒号
+  "stylusSupremacy.insertColons": false,
+  // 是否插入分号
+  "stylusSupremacy.insertSemicolons": false,
+  // 是否插入大括号
+  "stylusSupremacy.insertBraces": false,
+  // import之后是否换行
+  "stylusSupremacy.insertNewLineAroundImports": false,
+  // 两个选择器中是否换行
+  "stylusSupremacy.insertNewLineAroundBlocks": false
+  /* stylus 配置 end */
+}

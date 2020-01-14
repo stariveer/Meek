@@ -1,15 +1,12 @@
-window.onload = function () {
+window.onload = function() {
+  var point = new Datatang.Point(100, 100);
 
-  var point = new Datatang.Point(100, 100)
-  
-  var features = [
-    new Datatang.Feature(point)
-  ]
-  
+  var features = [new Datatang.Feature(point)];
+
   // 将会获取缺省样式
   var featureLayer = new Datatang.FeatureLayer({
-    features: features
-  })
+    features: features,
+  });
 
   var mapextent = [0, 0, 2783, 2125];
   var map = new Datatang.Map({
@@ -19,21 +16,18 @@ window.onload = function () {
         url: 'source/China_map.jpg',
         imageExtent: mapextent,
         projection: {
-          extent: mapextent
-        }
-      })
-      
+          extent: mapextent,
+        },
+      }),
     ],
     target: 'map',
     view: new Datatang.View({
       projection: {
-        extent: mapextent
+        extent: mapextent,
       },
       center: Datatang.ExtentUtil.getCenter(mapextent),
       zoom: 2,
-      maxZoom: 8
-    })
+      maxZoom: 8,
+    }),
   });
-}
-
-
+};

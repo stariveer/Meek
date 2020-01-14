@@ -1,0 +1,8 @@
+*.sh
+node_modules
+*.md
+*.woff
+*.ttf
+build/vendor*-manifest.json
+# static/js/vendor*.dll[v*].js
+static/*
